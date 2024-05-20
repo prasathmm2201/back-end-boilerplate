@@ -1,0 +1,65 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build  && node build/src/index.js",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "clean": "rm -rf build",
+    "format": "prettier --write 'src/**/*.ts'",
+    "husky": "npx husky init",
+    "prepare": "husky",
+    "make:migrate": "npx knex migrate:make 'file_name' --knexfile src/DB/index.ts",
+    "run:migrate": "npx env-cmd -f .env npx knex migrate:latest --knexfile src/DB/index.ts",
+    "run:seed": "npx env-cmd -f .env  npx knex seed:run --knexfile src/DB/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "3.2.5",
+    "swagger-jsdoc": "^6.2.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express-rate-limit": "^6.0.0",
+    "@types/helmet": "^4.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^20.11.19",
+    "@types/nodemailer": "^6.4.14",
+    "@types/swagger-ui-express": "^4.1.6",
+    "amqplib": "^0.10.3",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "knex": "^3.1.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.9",
+    "pg": "^8.11.3",
+    "swagger-ui-express": "^5.0.0",
+    "tslib": "^2.6.2"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
